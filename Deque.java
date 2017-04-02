@@ -9,8 +9,9 @@
 public interface Deque<D> { 
 
     public int size(); // return size
-    public void addFirst(); // adds at front
-    public void addLast(); // adds at end
+    public boolean isEmpty(); // checks if the deque is empty 
+    public void addFirst(D d); // adds at front
+    public void addLast(D d); // adds at end
     public D removeFirst(); // removes at front, returns removed value
     public D removeLast(); // removes at end, returns removed value
     public D peekFirst(); // returns value at front, does not remove it
