@@ -3,21 +3,20 @@
 
 <h2> RUNNING LIST OF METHODS TO IMPLEMENT, BY PRIORITY: </h2>
 <ol> 
-<li> ALDeque() </li>
-<li> size() </li>
-<li> isEmpty() </li>
-<li> addFirst(E e) </li>
-<li> addLast(E e) </li>
-<li> removeFirst() </li>
-<li> removeLast() </li>
-<li> peekFirst() </li>
-<li> peekLast() </li>
-<li> getFirst() </li>
-<li> getLast() </li>
-<li> getLast() </li>
-<li> contains() </li>
-<li> removeFirstOccurence() </li>
-<li> removeLastOccurence() </li>
+<li> <code> ALDeque() </code> </li>
+<li> <code> int size() </code> </li>
+<li> <code> boolean isEmpty() </code> </li>
+<li> <code> void addFirst(E e) </code> </li>
+<li> <code> void addLast(E e) </code> </li>
+<li> <code> E removeFirst() </code> </li>
+<li> <code> E removeLast() </code> </li>
+<li> <code> E peekFirst() </code> </li>
+<li> <code> E peekLast() </code> </li>
+<li> <code> E getFirst() </code> </li>
+<li> <code> E getLast() </code> </li>
+<li> <code> boolean contains(Object o) </code> </li>
+<li> <code> boolean removeFirstOccurence(Object o) </code> </li>
+<li> <code> boolean removeLastOccurence(Object o) </code> </li>
 </ol>
 
 <h2> METHOD SELECTIONS: EXPLANATION </h2>
