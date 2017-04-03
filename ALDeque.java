@@ -19,7 +19,7 @@ public class ALDeque<D> implements Deque<D> {
 	size = 0;
     }
 
-    // SIZE GETTER
+    // SIZE ACCESSOR 
 
     public int size() {
 	return size; 
@@ -31,40 +31,58 @@ public class ALDeque<D> implements Deque<D> {
 	return size == 0; 
     } // O(1)
 
+    // Adds to the front... 
+
     public void addFirst( D d ) {
 	arr.add(0,d); 
 	size++; // increments size
     } // O(n) 
+
+    // Adds to the end... 
 
     public void addLast( D d ) {
 	arr.add(d); 
 	size++; // increments size
     } // O(1)
 
+    // Removes from the front...
+
     public D removeFirst() {
 	size--; // decrements size 
         return arr.remove(0); // utilizes the fact that .remove() returns the removed value
     } // O(n) 
+
+    // Removes from the end... 
 
     public D removeLast() {
 	size--; // decrements size
 	return arr.get(size()); // utilizes the fact that .remove() returns the removed value
     } // O(1)
 
+    // Returns the value at the front... 
+
     public D peekFirst() {
 	return arr.get(0); 
     } // O(1)
+
+    // Returns the value at the end... 
 
     public D peekLast() {
 	return arr.get(size()-1); 
     } // O(1)
     
+    // Checks if a value is in the deque... 
+
     public boolean contains (D d) { 
 	for (D i: arr) { // for each D in arr...
 	    if (d.equals(i)) {return true;} // if the value is there, retrurn to true 
 	} 
 	return false; // otherwise, return false. 
     } // O(n) 
+
+    // Removes a value at its closest index to the front... 
+    // if a removal is done: true
+    // if the value is not in the deque: false
 
     public boolean removeFirstOccurence(D d) { 
 	if (!contains(d)) {return false;} // if the value isn't there, return false
@@ -77,6 +95,10 @@ public class ALDeque<D> implements Deque<D> {
 	return true; 
     } // O(n) --> amortized at n/2
     
+    // Removes a value at its closest index to the front... 
+    // if a removal is done: true
+    // if the value is not in the deque: false
+
     public boolean removeLastOccurence (D d) { 
 	if (!contains(d)) {return false;} 
 	for (int i = arr.size()-1; i >= 0; i--) { 
@@ -87,6 +109,8 @@ public class ALDeque<D> implements Deque<D> {
 	} 
 	return true; 
     } // O(n) --> amortized at n/2
+
+    // TO STRING
 
     public String toString() { 
 	String retStr = ""; 
