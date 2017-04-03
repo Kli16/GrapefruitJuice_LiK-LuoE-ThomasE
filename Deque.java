@@ -16,5 +16,9 @@ public interface Deque<D> {
     public D removeLast(); // removes at end, returns removed value
     public D peekFirst(); // returns value at front, does not remove it
     public D peekLast(); // returns value at end, does not remove it
- 
+    public boolean contains (D d); // returns whehter or not a value is in the deque. 
+    public boolean removeFirstOccurence(D d); // removes first occurence of input value. 
+    public boolean removeLastOccurence(D d); // removes last occurence of input value.
+
+
 }  

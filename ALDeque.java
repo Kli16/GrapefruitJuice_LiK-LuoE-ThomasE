@@ -7,53 +7,86 @@ import java.util.ArrayList;
 
 public class ALDeque<D> implements Deque<D> {
     
-    private ArrayList<D> arr; 
-    private int size; 
+    // PRIVATE VARIABLES 
 
+    private ArrayList<D> arr;
+    private int size;
+
+    // DEFAULT CONSTRUCTOR
+ 
     public ALDeque() {
 	arr = new ArrayList<D>(); 
 	size = 0;
     }
 
+    // SIZE GETTER
+
     public int size() {
 	return size; 
-    }
+    } // O(1) 
+
+    // CHECKS IF ARRAY IS EMPTY
 
     public boolean isEmpty() {
-	return size() == 0; 
-    }
+	return size == 0; 
+    } // O(1)
 
     public void addFirst( D d ) {
 	arr.add(0,d); 
-	size++; 
-    }
+	size++; // increments size
+    } // O(n) 
 
     public void addLast( D d ) {
 	arr.add(d); 
-	size++;
-    }
+	size++; // increments size
+    } // O(1)
 
     public D removeFirst() {
-	D hold = arr.get(0); 
-	arr.remove(0);
-	size--;
-	return hold; 
-    }
+	size--; // decrements size 
+        return arr.remove(0); // utilizes the fact that .remove() returns the removed value
+    } // O(n) 
 
     public D removeLast() {
-	D hold = arr.get(size()-1); 
-	arr.remove(size()-1);
-	size--;
-	return hold; 
-    }
+	size--; // decrements size
+	return arr.get(size()); // utilizes the fact that .remove() returns the removed value
+    } // O(1)
 
     public D peekFirst() {
 	return arr.get(0); 
-    }
+    } // O(1)
 
     public D peekLast() {
 	return arr.get(size()-1); 
-    }
+    } // O(1)
+    
+    public boolean contains (D d) { 
+	for (D i: arr) { // for each D in arr...
+	    if (d.equals(i)) {return true;} // if the value is there, retrurn to true 
+	} 
+	return false; // otherwise, return false. 
+    } // O(n) 
+
+    public boolean removeFirstOccurence(D d) { 
+	if (!contains(d)) {return false;} // if the value isn't there, return false
+	for (int i = 0; i < arr.size(); i++) { 
+	    if (arr.get(i).equals(d)) { 
+		arr.remove(i); // removes
+		break; // breaks loop to return true 
+	    } 
+	} 
+	return true; 
+    } // O(n) --> amortized at n/2
+    
+    public boolean removeLastOccurence (D d) { 
+	if (!contains(d)) {return false;} 
+	for (int i = arr.size()-1; i >= 0; i--) { 
+	    if (arr.get(i).equals(d)) { 
+		arr.remove(i); // removes
+		break; // breaks loop to return true 
+	    } 
+	} 
+	return true; 
+    } // O(n) --> amortized at n/2
 
     public String toString() { 
 	String retStr = ""; 
@@ -61,7 +94,7 @@ public class ALDeque<D> implements Deque<D> {
 	    retStr += d + " "; 
 	}
 	return retStr; 
-    } 
+    } // O(n) 
 
     public static void main (String[] args) { 
 
@@ -71,7 +104,9 @@ public class ALDeque<D> implements Deque<D> {
 	Deque<String> Eugene = new ALDeque<String>(); 
 	Deque<String> Kli6 = new ALDeque<String>();
 
-	// Inserts words in using addFirst:
+	// TEST ONE: ADDING AND REMOVING 
+
+	System.out.println("\n\nTEST ONE: ADDING AND REMOVING\n\n"); 
 
 	System.out.println("Adding to Eddie... ");
 	Eddie.addFirst("Luo!"); 
@@ -136,7 +171,9 @@ public class ALDeque<D> implements Deque<D> {
 	System.out.println(Eugene); // "Eugenio!" 
 	System.out.println(Kli6); // "Kli6!"
 
-	// Returns the nicknames by using peekFirst and peekLast: 
+	// TEST TWO: PEEKING AND EMPTINESS 
+
+	System.out.println("\n\nTEST TWO: PEEKING AND EMPTINESS\n\n");
 
 	System.out.println("Nicknames^2..."); 
 	System.out.println(Eddie.peekFirst()); // "E-Luo!"
@@ -161,10 +198,32 @@ public class ALDeque<D> implements Deque<D> {
         System.out.println(Eddie.isEmpty()); // true
 	System.out.println(Eugene.isEmpty()); // true
 	System.out.println(Kli6.isEmpty()); // true
+       	
+
+	// TEST THREE: CONTAINS AND OCCURENCE-BASED REMOVAL
 	
-	// Tries to remove while empty, an error should be returned: 
+	System.out.println("\n\nTEST THREE: CONTAINS AND OCCURENCE-BASED REMOVAL\n\n"); 
+
+	Deque<String> TBM = new ALDeque<String>(); 
+	System.out.println("Filling TBM..."); 
+	TBM.addLast("Digital"); 
+	TBM.addLast("Feedback");	
+	TBM.addLast("Analog");
+	TBM.addLast("Feedback");
+	System.out.println(TBM); // "Digital Feedback Analog Feedback"
+	System.out.println("Testing contains..."); 
+	System.out.println(TBM.contains("Digital")); // true
+	System.out.println(TBM.contains("Thumbs?")); // false 	
+	System.out.println("RFO of Feedback...");
+	TBM.removeFirstOccurence("Feedback"); 
+	System.out.println(TBM); // "Digital Analog Feedback" 
+	System.out.println("RLO of Feedback..."); 
+	TBM.removeLastOccurence("Feedback"); 
+	System.out.println(TBM); // "Digital Analog" 
+
+	// TEST FOUR: TO GET AN ERROR
 	
-	System.out.println("Removing an empty deque (an error should be returned)..."); 
+	System.out.println("\n\nRemoving from an empty deque (an error should be returned)...\n\n"); 
 	Eddie.removeFirst(); // ERROR
 	Eugene.removeFirst(); // ERROR
 	Kli6.removeFirst(); // ERROR	
