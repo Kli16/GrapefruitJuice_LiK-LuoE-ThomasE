@@ -48,15 +48,19 @@ public class ALDeque<D> implements Deque<D> {
     // Removes from the front...
 
     public D removeFirst() {
-	size--; // decrements size 
-        return arr.remove(0); // utilizes the fact that .remove() returns the removed value
+	size--; // decrements size
+	D hold = arr.get(0); 
+        arr.remove(0); // utilizes the fact that .remove() returns the removed value
+	return hold;
     } // O(n) 
 
     // Removes from the end... 
 
     public D removeLast() {
 	size--; // decrements size
-	return arr.get(size()); // utilizes the fact that .remove() returns the removed value
+	D hold = arr.get(size); 
+        arr.remove(size); // utilizes the fact that .remove() returns the removed value
+	return hold; 
     } // O(1)
 
     // Returns the value at the front... 
