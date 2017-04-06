@@ -25,3 +25,5 @@
 <h2> ARCHITECTURE</h2>
 <p> We chose to make a Deque with an ArrayList-based queue, because they were the easiest for our group to understand in our heads, and we couldn't think of any significant pros or cons to any of the three options. </p>
 <h2> </h2>
+
+<p> Made white spacing more consistent throughout code </p>

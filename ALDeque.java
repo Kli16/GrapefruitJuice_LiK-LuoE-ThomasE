@@ -34,7 +34,7 @@ public class ALDeque<D> implements Deque<D> {
     // Adds to the front... 
 
     public void addFirst( D d ) {
-	arr.add(0,d); 
+	arr.add( 0, d ); 
 	size++; // increments size
     } // O(n) 
 
@@ -72,14 +72,16 @@ public class ALDeque<D> implements Deque<D> {
     // Returns the value at the end... 
 
     public D peekLast() {
-	return arr.get(size()-1); 
+	return arr.get( size() - 1 ); 
     } // O(1)
     
     // Checks if a value is in the deque... 
 
-    public boolean contains (D d) { 
-	for (D i: arr) { // for each D in arr...
-	    if (d.equals(i)) {return true;} // if the value is there, retrurn to true 
+    public boolean contains ( D d ) { 
+	for ( D i: arr ) { // for each D in arr...
+	    if ( d.equals(i) ) {
+		return true; // if the value is there, retrurn to true 
+	    } 
 	} 
 	return false; // otherwise, return false. 
     } // O(n) 
@@ -88,10 +90,12 @@ public class ALDeque<D> implements Deque<D> {
     // if a removal is done: true
     // if the value is not in the deque: false
 
-    public boolean removeFirstOccurence(D d) { 
-	if (!contains(d)) {return false;} // if the value isn't there, return false
-	for (int i = 0; i < arr.size(); i++) { 
-	    if (arr.get(i).equals(d)) { 
+    public boolean removeFirstOccurence( D d ) { 
+	if ( !contains(d) ) {
+	    return false; // if the value isn't there, return false
+	}
+	for ( int i = 0; i < arr.size(); i++ ) { 
+	    if ( arr.get(i).equals(d) ) { 
 		arr.remove(i); // removes
 		break; // breaks loop to return true 
 	    } 
@@ -103,10 +107,12 @@ public class ALDeque<D> implements Deque<D> {
     // if a removal is done: true
     // if the value is not in the deque: false
 
-    public boolean removeLastOccurence (D d) { 
-	if (!contains(d)) {return false;} 
-	for (int i = arr.size()-1; i >= 0; i--) { 
-	    if (arr.get(i).equals(d)) { 
+    public boolean removeLastOccurence( D d ) { 
+	if ( !contains(d) ) {
+	    return false;
+	} 
+	for ( int i = arr.size() - 1; i >= 0; i-- ) { 
+	    if ( arr.get(i).equals(d) ) { 
 		arr.remove(i); // removes
 		break; // breaks loop to return true 
 	    } 
@@ -118,13 +124,13 @@ public class ALDeque<D> implements Deque<D> {
 
     public String toString() { 
 	String retStr = ""; 
-	for (D d: arr) { 
+	for ( D d : arr ) { 
 	    retStr += d + " "; 
 	}
 	return retStr; 
     } // O(n) 
 
-    public static void main (String[] args) { 
+    public static void main ( String[] args ) { 
 
 	// creates three deques to test methods on: 
 
